@@ -1,0 +1,6 @@
+{
+    "platformName": "Android",
+    "deviceName": "emulator-5554",
+    "browserName": "Chrome",
+    "automationName": "UiAutomator2"
+  }
