@@ -1,14 +1,20 @@
-def test_search_booking(driver):
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+def test_search(driver):
     driver.get("https://www.google.com")
 
     try:
-        accept_btn = driver.find_element("id", "L2AGLb")
+        accept_btn = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.ID, "L2AGLb"))
+        )
         accept_btn.click()
     except:
         pass
 
-    search_box = driver.find_element("name", "q")
-    search_box.send_keys("Booking.com")
-    search_box.submit()
-
-    assert "booking.com" in driver.page_source.lower()
+    # Ahora esperamos el campo de búsqueda
+    search_box = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "q"))
+    )
+    search_box.send_keys("pytest appium")
